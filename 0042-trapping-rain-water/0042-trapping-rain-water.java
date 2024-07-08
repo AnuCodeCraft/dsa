@@ -10,13 +10,13 @@ class Solution {
         
         while(left <= right){
             if(height[right] <= height[left]){
-                if(height[right] >= maxRight) maxRight = height[right];
-                else res += maxRight  - height[right];
+                if(height[right] > maxRight) maxRight = height[right];
+                else res += maxRight - height[right];
                 
                 right--;
                 
             }else{
-                if(height[left] >= maxLeft) maxLeft = height[left];
+                if(height[left] > maxLeft) maxLeft = height[left];
                 else res += maxLeft  - height[left];
                 
                 left++;
