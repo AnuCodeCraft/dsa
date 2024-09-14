@@ -5,11 +5,7 @@ class Solution {
         while (mid <= high) {
             switch (nums[mid]) {
                 case 0: {
-                    temp = nums[mid];
-                    nums[mid] = nums[low];
-                    nums[low] = temp;
-                    low++;
-                    mid++;
+                    swap(nums, low++, mid++);
                     break;
                 }
                 case 1: {
@@ -17,14 +13,16 @@ class Solution {
                     break;
                 }
                 case 2: {
-                    temp = nums[mid];
-                    nums[mid] = nums[high];
-                    nums[high] = temp;
-                    high--;
+                    swap(nums, high--, mid);
                     break;
                 }
             }
         }
+    }
 
+    public void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
     }
 }
