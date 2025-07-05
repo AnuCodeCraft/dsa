@@ -3,14 +3,14 @@ class Solution {
         int count = 0;
         int candidate = 0;
 
-        for (int num : nums) {
-            if (count == 0) {
+        for(int num : nums){
+            if(count == 0){
                 candidate = num;
             }
-
-            if (num == candidate) {
+            
+            if(candidate == num){
                 count++;
-            } else {
+            }else{
                 count--;
             }
         }
