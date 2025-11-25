@@ -1,10 +1,13 @@
 class Solution {
     public int removeDuplicates(int[] nums) {
-        int i = 0;
-        for (int n : nums)
-            if (i < 2 || n > nums[i - 2])
-                nums[i++] = n;
-        return i;
+        int k = 0;
 
+        for (int num : nums) {
+            if (k < 2 || num > nums[k - 2]) {
+                nums[k++] = num;
+            }
+        }
+
+        return k;
     }
 }
