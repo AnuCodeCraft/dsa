@@ -1,21 +1,18 @@
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-        int[] arr = {-1, -1};
-        Map<Integer, Integer> map = new HashMap<>();
+        Map <Integer, Integer> map = new HashMap<>();
+        int[] result = {-1, -1 };
 
         for(int i=0; i<nums.length; i++){
-            int difference = target - nums[i];
-
-            if(map.containsKey(difference)){
-                arr[0] = map.get(difference);
-                arr[1] = i;
+            int requiredNum = target - nums[i];
+            if(map.containsKey(requiredNum)){
+                result[0] = map.get(requiredNum);
+                result[1] = i;
                 break;
             }else{
-              map.put(nums[i], i);
+                map.put(nums[i], i);
             }
-
         }
-
-        return arr;
+        return result;
     }
 }
