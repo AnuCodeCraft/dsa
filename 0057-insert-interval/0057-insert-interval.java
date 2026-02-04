@@ -5,18 +5,19 @@ class Solution {
         for (int[] interval : intervals) {
             if (newInterval == null || newInterval[0] > interval[1]) {
                 result.add(interval);
-            } else if (newInterval[1] < interval[0]) {
+            } else if (interval[0] > newInterval[1]) {
                 result.add(newInterval);
                 result.add(interval);
                 newInterval = null;
             } else {
-                newInterval[0] = Math.min(newInterval[0], interval[0]);
-                newInterval[1] = Math.max(newInterval[1], interval[1]);
+                newInterval[0] = Math.min(interval[0], newInterval[0]);
+                newInterval[1] = Math.max(interval[1], newInterval[1]);
             }
-        }
-        ;
 
-        if (newInterval != null) result.add(newInterval);
+        }
+
+        if (newInterval != null)
+            result.add(newInterval);
         return result.toArray(new int[result.size()][]);
     }
 }
