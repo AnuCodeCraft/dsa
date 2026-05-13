@@ -15,31 +15,33 @@ public class Solution {
         int lenB = getListLength(headB);
 
         while (lenA > lenB) {
-            headA = headA.next;
             lenA--;
+            headA = headA.next;
         }
+        ;
 
-        while (lenB > lenA) {
-            headB = headB.next;
+        while (lenA < lenB) {
             lenB--;
+            headB = headB.next;
         }
+        ;
 
-        while (headA != null && headB != null && headA != headB) {
+        while (headA != headB) {
             headA = headA.next;
             headB = headB.next;
         }
+        ;
 
         return headA;
+
     }
 
     private int getListLength(ListNode head) {
         int len = 0;
-
         while (head != null) {
             head = head.next;
             len++;
         }
-
         return len;
     }
 }
