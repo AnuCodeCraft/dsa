@@ -6,9 +6,10 @@ class Solution {
         reverse(0, l - 1, nums);
         reverse(0, k - 1, nums);
         reverse(k, l - 1, nums);
+
     }
 
-    private void reverse(int left, int right, int[] nums) {
+    public void reverse(int left,  int right, int[] nums) {
         while (left < right) {
             int temp = nums[left];
             nums[left] = nums[right];
