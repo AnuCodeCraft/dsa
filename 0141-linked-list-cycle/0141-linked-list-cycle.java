@@ -18,9 +18,11 @@ public class Solution {
             slowPointer = slowPointer.next;
             fastPointer = fastPointer.next.next;
 
-            if (fastPointer == slowPointer)
+            if (slowPointer == fastPointer) {
                 return true;
+            }
         }
+
         return false;
     }
 }
