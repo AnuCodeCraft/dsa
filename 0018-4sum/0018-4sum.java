@@ -1,6 +1,6 @@
 class Solution {
     public List<List<Integer>> fourSum(int[] nums, int target) {
-        if (nums == null && nums.length < 4) return new ArrayList<>();
+        if (nums == null || nums.length < 4) return new ArrayList<>();
 
         Arrays.sort(nums);
         Set<List<Integer>> result = new HashSet<>();
