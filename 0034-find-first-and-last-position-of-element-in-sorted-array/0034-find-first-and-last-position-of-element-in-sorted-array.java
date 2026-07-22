@@ -1,47 +1,51 @@
 class Solution {
     public int[] searchRange(int[] nums, int target) {
 
-        int frist = findFrist(nums, target);
-        int last = findLast(nums, target);
+        int left = findLeftIndex(nums, target);
+        int right = findRightIndex(nums, target);
 
-        return new int[] { frist, last };
+        return new int[] { left, right };
     }
 
-    public int findFrist(int[] nums, int target) {
+    private int findLeftIndex(int[] nums, int target){
         int low = 0;
-        int high = nums.length - 1;
-        int ans = -1;
+        int high = nums.length - 1; 
+        int left = -1;
 
-        while (low <= high) {
-            int mid = low + (high - low) / 2;
-            if (nums[mid] == target) {
-                ans = mid;
-                high = mid - 1; // move left
-            } else if (nums[mid] > target) {
+        while(low <= high){
+            int mid = low + (high - low)/2;
+
+            if(nums[mid] == target){
+                left = mid;
                 high = mid - 1;
-            } else {
+            }else if(nums[mid] > target){
+                high = mid - 1;
+            }else {
                 low = mid + 1;
             }
         }
-        return ans;
+
+        return left;
     }
 
-    public int findLast(int[] nums, int target) {
+    private int findRightIndex(int[] nums, int target){
         int low = 0;
         int high = nums.length - 1;
-        int ans = -1;
+        int right = -1;
 
-        while (low <= high) {
-            int mid = low + (high - low) / 2;
-            if (nums[mid] == target) {
-                ans = mid;
-                low = mid + 1; // move right;
-            } else if (nums[mid] > target) {
-                high = mid - 1;
-            } else {
+        while(low <= high){
+            int mid = low + (high - low)/2;
+
+            if(nums[mid] == target){
+                right = mid;
+                low = mid + 1;
+            }else if(nums[mid] > target){
+                high = mid -1;
+            }else{
                 low = mid + 1;
             }
         }
-        return ans;
+
+        return right;
     }
 }
