@@ -1,32 +1,31 @@
 class MedianFinder {
-    private PriorityQueue<Integer> lowerHalf;
-    private PriorityQueue<Integer> upperHalf;
+    private PriorityQueue<Integer> lowerhalf;
+    private PriorityQueue<Integer> upperhalf;
 
     public MedianFinder() {
-        lowerHalf = new PriorityQueue<>(Collections.reverseOrder());
-        upperHalf = new PriorityQueue<>();
+        lowerhalf = new PriorityQueue<>(Collections.reverseOrder());
+        upperhalf = new PriorityQueue<>();
     }
 
     public void addNum(int num) {
-        if (lowerHalf.isEmpty() || num <= lowerHalf.peek()) {
-            lowerHalf.offer(num);
+        if (lowerhalf.isEmpty() || lowerhalf.peek() >= num) {
+            lowerhalf.offer(num);
         } else {
-            upperHalf.offer(num);
+            upperhalf.offer(num);
         }
 
-        // balance the heaps
-        if (lowerHalf.size() > upperHalf.size() + 1) {
-            upperHalf.offer(lowerHalf.poll());
-        } else if (upperHalf.size() > lowerHalf.size()) {
-            lowerHalf.offer(upperHalf.poll());
+        if (lowerhalf.size() > upperhalf.size() + 1) {
+            upperhalf.offer(lowerhalf.poll());
+        } else if (upperhalf.size() > lowerhalf.size()) {
+            lowerhalf.offer(upperhalf.poll());
         }
     }
 
     public double findMedian() {
-        if (lowerHalf.size() > upperHalf.size()) {
-            return lowerHalf.peek();
+        if (lowerhalf.size() > upperhalf.size()) {
+            return lowerhalf.peek();
         }
-        return (lowerHalf.peek() + upperHalf.peek()) / 2.0;
+        return (lowerhalf.peek() + upperhalf.peek()) / 2.0;
     }
 }
 
