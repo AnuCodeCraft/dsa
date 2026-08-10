@@ -8,8 +8,6 @@ class Solution {
                 set.remove(s.charAt(left));
                 left++;
             }
-            ;
-
             set.add(s.charAt(right));
             maxLen = Math.max(maxLen, right - left + 1);
         }
