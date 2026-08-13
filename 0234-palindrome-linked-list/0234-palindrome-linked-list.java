@@ -9,51 +9,43 @@
  * }
  */
 class Solution {
-    public boolean isPalindrome(ListNode head) {
-
-        // step 1 : find the middle element
-        ListNode slowPointer = head;
-        ListNode fastPointer = head;
-
-        while (fastPointer != null && fastPointer.next != null) {
-            slowPointer = slowPointer.next;
-            fastPointer = fastPointer.next.next;
-        }
-
-        if (fastPointer != null) {
-            slowPointer = slowPointer.next;
-        }
-
-        // step2 : reverse the other half of the linked List
-        slowPointer = reverse(slowPointer);
-        fastPointer = head;
-
-        // step 3 : compare the both halves values
-        while (slowPointer != null) {
-            if (slowPointer.val != fastPointer.val) {
-                return false;
-            }
-            ;
-
-            slowPointer = slowPointer.next;
-            fastPointer = fastPointer.next;
-        }
-
-        return true;
-    }
-
-    // helper function to reverse the linkedList
-    private ListNode reverse(ListNode head){
-        ListNode curr = head;
+    
+    public ListNode reverse(ListNode head) {
         ListNode prev = null;
+        ListNode curr = head;
 
-        while(curr != null){
+        while (curr != null) {
             ListNode next = curr.next;
             curr.next = prev;
+
             prev = curr;
             curr = next;
         }
 
         return prev;
     }
+    
+    public boolean isPalindrome(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head.next; 
+
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        } 
+        
+        ListNode rev = reverse(slow.next);
+        slow.next = null; 
+
+        while(rev != null){
+            if(rev.val != head.val){
+                return false;
+            }
+            rev = rev.next;
+            head = head.next;
+        }
+
+        return true;
+    }
 }
+
