@@ -7,12 +7,7 @@ class Solution:
         for key, val in mp.items():
             if val==1:
                 return -1
-            if val%3==0:
-                ans+=(val//3)
-            elif val%3==2:
-                ans+=(val//3)+1
-            else:
-                ans+=((val//3)-1)
-                val-=((val//3)-1)*3
-                ans+=(val//2)
+            ans+=val//3
+            if val%3!=0:
+                ans+=1
         return ans
