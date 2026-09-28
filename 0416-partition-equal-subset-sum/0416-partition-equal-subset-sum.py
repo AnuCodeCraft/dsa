@@ -1,20 +1,14 @@
 class Solution:
-    def solve(self,nums, n, i, curr_sum, rem_sum, dp):
-        if curr_sum==rem_sum:
-            return True
-        if i>=n:
-            if curr_sum!=rem_sum:
-                return False
-        if dp[i][curr_sum]!=-1:
-            return dp[i][curr_sum]
-        ans = self.solve(nums, n, i+1, curr_sum+nums[i], rem_sum-nums[i], dp) or self.solve(nums, n, i+1, curr_sum, rem_sum, dp)
-        dp[i][curr_sum]=ans
-        return ans
-
-
     def canPartition(self, nums: list[int]) -> bool:
+        # key here is the reverse loop from target->num, it prevents the same number from being counted multiple times within the same loop
+        total_sum = sum(nums)
         n = len(nums)
-        total = sum(nums)
-        # dp = [[[-1 for j in range(total+1)]for k in range(total+1)] for i in range(n+1)]
-        dp = [[-1 for i in range(total+1)] for j in range(n+1)]
-        return self.solve(nums, n, 0, 0, total, dp)
+        target = total_sum//2
+        if total_sum%2!=0:
+            return False
+        dp = [False]*(target+1)
+        dp[0]=True
+        for num in nums:
+            for cur_sum in range(target, num-1, -1):
+                dp[cur_sum] = dp[cur_sum] or dp[cur_sum-num]
+        return dp[target]
